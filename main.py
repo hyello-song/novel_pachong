@@ -9,8 +9,8 @@
 #  本程序为自由软件; 你可以在自由软件基金会发布的GNU通用公共许可证
 #  （第2版或任何更新的版本）条款约束下重发布或（和）修改本程序。
 from urllib.request import urlopen
-from define import snwx, biquge, leduwo
-df = {'snwx':snwx, 'leduwo':leduwo, 'biquge':biquge}
+from define import snwx, biquge, leduwo, snwx-txt
+df = {'snwx':snwx, 'leduwo':leduwo, 'biquge':biquge, 'snwx-txt':snwx-txt}
 from datetime import datetime
 import kit
 
@@ -22,7 +22,8 @@ Website:hyello.org
 ''')
 kit.datestr = datetime.now().strftime('%Y%m%d%H%M%S')
 print('''------------------
- - www.snwx.com(snwx)
+ - www.snwx.com（txt下载页）(snwx-txt)
+ - www.snwx.com（富格式下载页）(snwx)
  - leduwo.com(leduwo)
  - biquge.la(biquge)
 ------------------''')
@@ -30,7 +31,7 @@ src = str(input('请输入书籍源（括号内标识符）：'))
 ctx_add = str(input('请输入书籍目录地址：'))
 kit.logger(0, '书籍源%s %s' % (src, ctx_add))
 try:
-	book_name, context = df[src].getcontext(ctx_add)
+	book_name, author, book_id, context = df[src].getcontext(ctx_add)
 except:
 	kit.logger(-1, '%s不是合法的书籍源' % src)
 
