@@ -19,9 +19,14 @@ def getcontext(url):
 	#kit.pickout(list_str, '<a href=\"http://www.leduwo.com/modules/article/search.php?searchtype=author&searchkey=', '\" target=\"_blank\">')  作者
 	step1 = kit.pickout(list_str, '<table', '</table>')
 	step2 = []
+	kit.logger(0, '整理章节内容来源')
 	for i in step1.split('<td class=\"ccss\">'):
-		step2.append((url + kit.pickout(i, '<a href=\"', '\">'), \
-		kit.pickout(i, '\">', '</a>')))
+		try:
+			step2.append((url + kit.pickout(i, '<a href=\"', '\">'), \
+			kit.pickout(i, '\">', '</a>')))
+		except:
+			kit.logger(1, '割目录结构出错(%s)' % i)
+	kit.logger(0, '整理完毕')
 	return kit.pickout(list_str, '<div id=\"box\"><h1>', '</h1></div>'), \
 	kit.pickout(list_str, '<a href=\"http://www.leduwo.com/modules/article/search.php?searchtype=author&searchkey=', '\" target=\"_blank\">'), \
 	kit.pickout(list_str, 'var article_id = \"', '\";'), '（此功能未编写）', step2
@@ -29,7 +34,7 @@ def getcontext(url):
 
 def getchapter(url):
 	'''获取章节内容，参数为该章节页面，返回章节内容（html）'''
-	return kit.pickout(urlopen(url).read().decode('gbk', 'replace'), '<div id=\"content\">', '</div>').replace('<br /><br />', '<br />') + '\n'
+	return kit.pickout(urlopen(url).read().decode(ENCODING, 'replace'), '<div id=\"content\">', '</div>').replace('<br /><br />', '<br />') + '\n'
 
 def search(keyword):
 	'''搜索书籍，参数为关键字，返回一个由二项元组组成的列表，元组第一项为链接，第二项为书籍名称'''

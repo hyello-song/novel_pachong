@@ -14,7 +14,7 @@ def getcontext(url):
 	kit.logger(0, '打开小说目录页(%s)' % url)
 	with urlopen(url) as file_obj:
 		list_raw = file_obj.read()
-		list_str = list_raw.decode('gbk', 'replace')
+		list_str = list_raw.decode(ENCODING, 'replace')
 		step1 = kit.pickout(list_str, '<ul>', '</ul>')
 	step2 = []
 	kit.logger(0, '整理章节内容来源')
@@ -26,11 +26,11 @@ def getcontext(url):
 		#print(step2[len(step2) - 1][0], step2[len(step2) - 1][1])
 	kit.logger(0, '整理完毕')
 	return kit.pickout(list_str, '<DIV id="BookMl">', '<BR>'), \
-	'', '', '（此功能未编写）', step2
+	'', kit.pickout(url, '/txt/', '.html'), '（此功能未编写）', step2
 
 def getchapter(url):
 	'''获取章节内容，参数为该章节页面，返回章节内容（html）'''
-	return kit.pickout(urlopen(url).read().decode('gbk', 'replace'), '<div id=\"BookText\">', '</div>').replace('<br /><br />', '<br />') + '\n'
+	return kit.pickout(urlopen(url).read().decode(ENCODING, 'replace'), '<div id=\"BookText\">', '</div>').replace('<br /><br />', '<br />') + '\n'
 
 def search(keyword):
 	'''搜索书籍，参数为关键字，返回一个由二项元组组成的列表，元组第一项为链接，第二项为书籍名称'''
