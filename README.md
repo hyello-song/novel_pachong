@@ -1,3 +1,5 @@
+# novel_pachong
+A simple Python3 console program used to download novel from certain websites
 这里是一个用Python3编写的网络小说爬虫，运行于控制台下。
 （GNU GPL V2授权）
 *小说版权归**原作者**所有，本程序仅为交流Python网络操作技术*
