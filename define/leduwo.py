@@ -22,11 +22,14 @@ def getcontext(url):
 	kit.logger(0, '整理章节内容来源')
 	for i in step1.split('<td class=\"ccss\">'):
 		try:
+			if '<td colspan=\"4\" class=\"vcss\">' in i:
+				step2.append((kit.H1_SIGN, kit.pickout(i, \
+				'<td colspan=\"4\" class=\"vcss\">', '</td>')))
 			step2.append((url + kit.pickout(i, '<a href=\"', '\">'), \
 			kit.pickout(i, '\">', '</a>')))
 		except:
 			kit.logger(1, '割目录结构出错(%s)' % i)
-	kit.logger(0, '整理完毕')
+	kit.logger(0, '整理完毕，共有%d章' % len(step2))
 	return kit.pickout(list_str, '<div id=\"box\"><h1>', '</h1></div>'), \
 	kit.pickout(list_str, '<a href=\"http://www.leduwo.com/modules/article/search.php?searchtype=author&searchkey=', '\" target=\"_blank\">'), \
 	kit.pickout(list_str, 'var article_id = \"', '\";'), '（此功能未编写）', step2

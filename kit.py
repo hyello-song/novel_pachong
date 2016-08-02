@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 import sys
+H1_SIGN = '@@@@'
 
 def pickout(target, start, end):
 	poss = target.index(start)

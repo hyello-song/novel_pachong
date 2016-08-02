@@ -24,7 +24,7 @@ def getcontext(url):
 		except ValueError:
 			kit.logger(1, '割目录结构出错(%s)' % i)
 		#print(step2[len(step2) - 1][0], step2[len(step2) - 1][1])
-	kit.logger(0, '整理完毕')
+	kit.logger(0, '整理完毕，共有%d章' % len(step2))
 	return kit.pickout(list_str, '<DIV id="BookMl">', '<BR>'), \
 	'', kit.pickout(url, '/txt/', '.html'), '（此功能未编写）', step2
 
