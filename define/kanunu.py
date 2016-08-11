@@ -24,7 +24,8 @@ def getcontext(url):
 			srctype = 1
 			step1 = kit.pickout(list_str, '<table cellspacing=', '</table>')
 		else:
-			pass
+			srctype = 1
+			step1 = kit.pickout(list_str, '<table border="0" cellspacing=\"1\" cellpadding=\"7\"', '</table>')
 	step2 = []
 	kit.logger(0, '整理章节内容来源')
 	for i in step1.split('</td>'):
@@ -42,6 +43,8 @@ def getcontext(url):
 		context = kit.pickout(list_str, '<td class=\"p10-21\">', '</td>')
 	elif '<td class=\"p10-24\">' in list_str:
 		context = kit.pickout(list_str, '<td class=\"p10-24\">', '</td>')
+	else:
+		context = ""
 	if srctype == 0:
 		bk_name = kit.pickout(list_str, '<h2><b>', '</b></h2>')
 		bk_id = kit.pickout(url, 'files/', '.html')
@@ -49,13 +52,14 @@ def getcontext(url):
 		bk_name = kit.pickout(list_str, '<font color=\"#dc143c\">', '</font>')
 		bk_id = kit.pickout(url, '/book', '/index.html')
 	else:
-		pass
+		bk_name = ""
+		bk_id = ""
 	return bk_name, kit.pickout(list_str, '作者：', ' 发布时间'), \
 	bk_id, context, step2
 
 def getchapter(url, flag = 0):
 	'''获取章节内容，参数为该章节页面，返回章节内容（html）'''
-	return kit.pickout(urlopen(url).read().decode(ENCODING, 'replace'), '<td width=\"820\" align=\"left\" bgcolor=\"#FFFFFF\">', '</td>') + '\n'
+	return kit.pickout(urlopen(url).read().decode(ENCODING, 'replace'), '<td width=\"820\" align=\"left\" bgcolor=\"#FFFFFF\">', '</td>').replace('<br />\r\n<br />', '<br />') + '\n'
 
 def search():
 	'''搜索书籍，参数为关键字，返回一个由二项元组组成的列表，元组第一项为链接，第二项为书籍名称'''
