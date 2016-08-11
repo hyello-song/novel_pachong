@@ -41,18 +41,18 @@ with open('./' + book_name + '.html', 'w') as output:
 	% book_name)
 	output.write("<p align=\'right\'><em>书名：" + book_name + ' 作者：' + author + \
 	'<br />本文件系Songer小说爬虫自动生成<br />' + introduce + '\n</em></p>')
-	for j in context:
+	for link, title in context:
 		try:
-			if j[0] == kit.H1_SIGN and h1_flag:
-				output.write('<br />' * 3 + '<h1 align=\center\">' + j[1] + '</h1>\n' + '<br />' * 3)
-				kit.logger(0, '（大标题）%s %s' % j)
+			if link == kit.H1_SIGN and h1_flag:
+				output.write('<br />' * 3 + '<h1 align=\center\">' + title + '</h1>\n' + '<br />' * 3)
+				kit.logger(0, '（大标题）%s' % title)
 			else:
-				output.write('<h2>' + j[1] + '</h2><hr />\n' + df[src].getchapter(j[0]))
-				kit.logger(0, '%s %s' % j)
+				output.write('<h2>' + title + '</h2><hr />\n' + df[src].getchapter(link))
+				kit.logger(0, '%s %s' % (link, title))
 		except:
-			output.write('<h2>' + j[1] + \
+			output.write('<h2>' + title + \
 			'</h2><hr />\n本章节的内容好像出了点问题，请手动处理！'\
-			+ '<a href=\"' + j[0] + '\">章节链接</a>')
-			kit.logger(1, '章节获取失败:%s %s' % j)
+			+ '<a href=\"' + link + '\">章节链接</a>')
+			kit.logger(1, '章节获取失败:%s %s' % (link, title))
 	output.write('</body></html>')
 	kit.logger(0, '向%s.html输出结束' % book_name)
