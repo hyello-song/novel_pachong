@@ -68,7 +68,7 @@ bitee = len(str(len(context)))
 file_ctn = open('./%s/content.txt' % book_name, 'a')
 for link, title in context:
 	i += 1
-	if not(link in [j[2] for j in ctn] and flag_continue):
+	if link in [j[2] for j in ctn] and flag_continue:
 		kit.logger(kit.LOG, 'Skip:%s %s' % (link, title))
 		continue
 	filename = ('chapter%.' + str(bitee) + 'd.html') % i
