@@ -11,7 +11,10 @@ from define import snwx, biquge, leduwo, snwx_txt, kanunu, ADD
 df = {'snwx':snwx, 'leduwo':leduwo, 'biquge':biquge, 'snwx_txt':snwx_txt, 'kanunu':kanunu, 'ADD':ADD}
 ```
 
-> **下一步目标：（即为第二代，准备升级到SongReader）**  
+*最近把这玩意又改了一下，按照章节分了文件，存在文件夹里面，方便追更中小说获取与epub编辑*
+*旧输出方式留在main_old.py中，各位自行取用*
+
+> **下一步目标：（即为第二代，准备择机升级到SongReader）**  
 > 1、下载书籍时可以选章单独下载，书籍存储方式变为每章分文件，但可以以不同方式导出；  
 > 2、加入超时重试功能，逐字解码，从而提高容错性能；  
 > 3、研究epub格式，从而支持txt与epub格式导出（还有zip压缩技术也得看看怎么搞）；  
