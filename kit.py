@@ -3,9 +3,9 @@ from datetime import datetime
 import sys
 datestr = datetime.now().strftime('%Y%m%d%H%M%S')
 H1_SIGN = '@@@@'
-KIT_ERR = -1
-KIT_LOG = 0
-KIT_WARN = 1
+ERR = -1
+LOG = 0
+WARN = 1
 
 def pickout(target, start, end):
 	poss = target.index(start)

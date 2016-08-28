@@ -2,7 +2,7 @@
 #snwx使用gbk编码
 ENCODING = 'gbk'
 
-import kit
+#import kit
 from urllib.request import urlopen
 
 def introduce():
