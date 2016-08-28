@@ -68,13 +68,13 @@ bitee = len(str(len(context)))
 file_ctn = open('./%s/content.txt' % book_name, 'a')
 for link, title in context:
 	i += 1
-	if link in [j[2] for j in ctn]:
+	if not(link in [j[2] for j in ctn] and flag_continue):
 		kit.logger(kit.LOG, 'Skip:%s %s' % (link, title))
 		continue
 	filename = ('chapter%.' + str(bitee) + 'd.html') % i
 	with open(('./%s/' + filename) % book_name, 'w') as file_chap:
 		try:
-			file_chap.write('<html><head><meta charset=\"utf-8\" /><title>%s - %s</title></head><body>\n' % (book_name, title))
+			file_chap.write('<html><head><style>p{text-indent:2em;margin:1px auto 1px auto;}</style>\n<meta charset=\"utf-8\" /><title>%s - %s</title></head><body>\n' % (book_name, title))
 			if link == kit.H1_SIGN and flag_h1:
 				file_chap.write('<br />' * 3 + '<h1 align=\center\">' + title + '</h1>\n' + '<br />' * 3)
 				kit.logger(kit.LOG, '（大标题）%s' % title)

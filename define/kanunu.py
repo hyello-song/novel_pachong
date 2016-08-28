@@ -59,7 +59,8 @@ def getcontext(url):
 
 def getchapter(url, flag = 0):
 	'''获取章节内容，参数为该章节页面，返回章节内容（html）'''
-	return kit.pickout(urlopen(url).read().decode(ENCODING, 'replace'), '<td width=\"820\" align=\"left\" bgcolor=\"#FFFFFF\">', '</td>').replace('<br />\r\n<br />', '<br />') + '\n'
+	return '<p>' + kit.pickout(urlopen(url).read().decode(ENCODING, 'replace'), '<td width=\"820\" align=\"left\" bgcolor=\"#FFFFFF\">', '</td>').\
+	replace('<br />\r\n<br />', '</p><p>').replace('&nbsp;&nbsp;', '').replace('　　', '') + '</p>\n'
 
 def search():
 	'''搜索书籍，参数为关键字，返回一个由二项元组组成的列表，元组第一项为链接，第二项为书籍名称'''
