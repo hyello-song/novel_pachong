@@ -12,5 +12,5 @@ from define import snwx, biquge, leduwo, snwx_txt, kanunu, ADD
 df = {'snwx':snwx, 'leduwo':leduwo, 'biquge':biquge, 'snwx_txt':snwx_txt, 'kanunu':kanunu, 'NEWITEM':NEWITEM}
 ```
 
-The current way of saving is putting each chapter in individual files and gathering all the chapter in a single folder， while the old one save all the content in only one file. If you prefer the latter one, please turn to *main_old.py*.
+The current way of saving is putting each chapter in individual files and gathering all the chapter in a single folder， while the old one save all the content in only one file. If you prefer the old one, please turn to *main_old.py*.
 
